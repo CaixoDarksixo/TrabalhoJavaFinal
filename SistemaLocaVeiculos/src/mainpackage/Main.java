@@ -6,9 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-// Depois remover o "unused"
-@SuppressWarnings({ "serial", "unused" })
 public class Main extends JFrame{
+	private static final long serialVersionUID = -9151783484566916823L;
 	public static int fh = (int)(Toolkit.getDefaultToolkit().getScreenSize().height * 0.56), fw = (int)( Toolkit.getDefaultToolkit().getScreenSize().height * 1.08);
 	public static ArrayList<Cliente> clientes;
 	public static ArrayList<Veiculo> veiculos;
@@ -45,7 +44,7 @@ public class Main extends JFrame{
 		telas.add(DevolverVeiculos);
 		telas.add(VenderVeiculos);
 		
-		mainlabel = new JLabel("");
+		mainlabel = new JLabel("nenhuma tela selecionada");
 		main = new JPanel(new GridLayout(0,1,4,4));
 		main.add(mainlabel);
 		
@@ -85,18 +84,23 @@ public class Main extends JFrame{
 	}
 	
 	public static void ManterClientes() {
-		
+		main.removeAll();
+		// se cria os componentes como objetos temporários, depois os adiciona no jpanel main, e no fim da função coloca os comportamentos dos botões
 	}
 	public static void IncluirVeiculos() {
+		main.removeAll();
 		
 	}
 	public static void LocarVeiculos() {
+		main.removeAll();
 		
 	}
 	public static void DevolverVeiculos() {
+		main.removeAll();
 		
 	}
 	public static void VenderVeiculos() {
+		main.removeAll();
 		
 	}
 }
