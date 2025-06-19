@@ -4,7 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-@SuppressWarnings("serial")
+// Depois remover o "unused"
+@SuppressWarnings({ "serial", "unused" })
 public class Main extends JFrame{
 	public static void main(String args[]) {
 		

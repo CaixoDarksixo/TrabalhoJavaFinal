@@ -18,27 +18,13 @@ public class Locacao {
 	public int getDias() {
 		return dias;
 	}
-	public void setDias(int dias) {
-		this.dias = dias;
-	}
 	public double getValor() {
 		return valor;
-	}
-	public void setValor(double valor) {
-		this.valor = valor;
 	}
 	public Calendar getData() {
 		return data;
 	}
-	public void setData(Calendar data) {
-		this.data = data;
-	}
 	public Cliente getCliente() {
 		return cliente;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	
-	
 }
