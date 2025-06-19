@@ -30,6 +30,7 @@ public abstract class Veiculo implements VeiculoI {
 	}
 	public void devolver() {
 		this.estado = Estado.DISPONIVEL;
+		this.locacao = null;
 	}
 	public Estado getEstado() {
 		return this.estado;
