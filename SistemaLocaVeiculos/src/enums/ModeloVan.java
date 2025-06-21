@@ -1,5 +1,5 @@
 package enums;
 
 public enum ModeloVan {
-	Kombi, Sprinter;
+	Kombi, Sprinter, Ducato, Transit, Jumper, Florino, Kangoo;
 }
