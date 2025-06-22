@@ -13,6 +13,10 @@ public class Cliente implements Serializable {
 	    this.CPF = CPF;
 	    this.Endereco = Endereco;
 	}
+	
+	public Cliente() {
+	    this("", "", "", "", "");
+	}
 
 	public String getNome() {
 		return nome;
