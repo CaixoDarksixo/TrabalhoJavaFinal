@@ -3,13 +3,12 @@ package mainpackage;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
 
 public class Main extends JFrame{
 	private static final long serialVersionUID = -9151783484566916823L;
 	public static int fh = (int)(Toolkit.getDefaultToolkit().getScreenSize().height * 0.56), fw = (int)( Toolkit.getDefaultToolkit().getScreenSize().height * 1.08);
-	public static ArrayList<Cliente> clientes;
+	public static ArrayList<Cliente> clientes = new ArrayList<>();
 	public static ArrayList<Veiculo> veiculos;
 	
 	private static Container mainc;
@@ -53,8 +52,11 @@ public class Main extends JFrame{
 		
 		ManterClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ManterClientes();
-				setVisible(true);
+				main.removeAll();
+				main.setLayout(new BorderLayout());
+				main.add(new TelaManterClientes(), BorderLayout.CENTER);
+				main.revalidate();
+				main.repaint();
 			}
 		});
 		IncluirVeiculos.addActionListener(new ActionListener() {
@@ -83,13 +85,9 @@ public class Main extends JFrame{
 		});
 	}
 	
-	public static void ManterClientes() {
-		main.removeAll();
-		// se cria os componentes como objetos temporários, depois os adiciona no jpanel main, e no fim da função coloca os comportamentos dos botões
-	}
 	public static void IncluirVeiculos() {
 		main.removeAll();
-		
+		// se cria os componentes como objetos temporários, depois os adiciona no jpanel main, e no fim da função coloca os comportamentos dos botões
 	}
 	public static void LocarVeiculos() {
 		main.removeAll();

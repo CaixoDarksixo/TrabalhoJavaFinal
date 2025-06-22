@@ -1,7 +1,18 @@
 package mainpackage;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
+    private static final long serialVersionUID = 1L;
 	private String nome, sobrenome, RG, CPF, Endereco;
+	
+	public Cliente(String nome, String sobrenome, String RG, String CPF, String Endereco) {
+	    this.nome = nome;
+	    this.sobrenome = sobrenome;
+	    this.RG = RG;
+	    this.CPF = CPF;
+	    this.Endereco = Endereco;
+	}
 
 	public String getNome() {
 		return nome;
