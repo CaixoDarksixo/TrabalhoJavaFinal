@@ -3,22 +3,15 @@ package mainpackage;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.text.MaskFormatter;
-import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
-import enums.Marca;
-import enums.Categoria;
-import enums.Estado;
-import enums.ModeloAutomovel;
+import javax.swing.*;
 
 public class Main extends JFrame{
 	private static final long serialVersionUID = -9151783484566916823L;
 	public static int fh = (int)(Toolkit.getDefaultToolkit().getScreenSize().height * 0.56), fw = (int)( Toolkit.getDefaultToolkit().getScreenSize().height * 1.08);
-	public static ArrayList<Cliente> clientes = new ArrayList<>();
-	public static ArrayList<Veiculo> veiculos = new ArrayList<>();
+	public static List<Cliente> clientes = ClienteRepo.load();
+    public static List<Veiculo> veiculos = VeiculoRepo.load();
 	
 	private static Container mainc;
 	private static JPanel telas, main;
@@ -29,24 +22,24 @@ public class Main extends JFrame{
 	public static JButton Voltar = new JButton("Voltar");
 	
 	public static void main(String args[]) {
-	    // Teste cliente
-		Cliente clienteTeste = new Cliente();
-		clienteTeste.setNome("João");
-	    clienteTeste.setSobrenome("Silva");
-	    clienteTeste.setCPF("123.456.789-00");
-	    clientes.add(clienteTeste);
+	    // // Teste cliente
+		// Cliente clienteTeste = new Cliente();
+		// clienteTeste.setNome("João");
+	    // clienteTeste.setSobrenome("Silva");
+	    // clienteTeste.setCPF("123.456.789-00");
+	    // clientes.add(clienteTeste);
 	    
 	    // Teste carro
-	    Automovel gol = new Automovel(
-	        Estado.DISPONIVEL, 
-	        Marca.VW, 
-	        Categoria.POPULAR,
-	        ModeloAutomovel.Gol,
-	        "ABC-1234", 
-	        2020, 
-	        35000.0
-	    );
-	    veiculos.add(gol);
+	    // Automovel gol = new Automovel(
+	    //     Estado.DISPONIVEL, 
+	    //     Marca.VW, 
+	    //     Categoria.POPULAR,
+	    //     ModeloAutomovel.Gol,
+	    //     "ABC-1234", 
+	    //     2020, 
+	    //     35000.0
+	    // );
+	    // veiculos.add(gol);
 	    new Main().setVisible(true);
 	}
 	

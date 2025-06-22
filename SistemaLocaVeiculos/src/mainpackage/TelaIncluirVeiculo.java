@@ -42,7 +42,7 @@ public class TelaIncluirVeiculo extends JPanel {
 
         JLabel valorLbl = new JLabel("Valor de compra");
         DecimalFormat df = new DecimalFormat("#,##0.00");
-        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(new Locale("pt", "BR")));
+        df.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.forLanguageTag("pt-BR")));
 
         NumberFormatter formatter = new NumberFormatter(df);
         formatter.setValueClass(Double.class);
@@ -83,9 +83,9 @@ public class TelaIncluirVeiculo extends JPanel {
 
         addVeic.addActionListener((ActionEvent e) -> {
             String tipo = (String) comboTipo.getSelectedItem();
-            try {
+            // try {
                 int ano = Integer.parseInt(tAno.getText().replaceAll("[^\\d]", ""));
-                double val = Double.parseDouble(TValor.getText().replace(",", "."));
+                double val = Double.parseDouble(TValor.getText().replace(".","").replace(",", "."));
                 String placa = tPlaca.getText().replaceAll("[ _]", "");
 
                 switch (tipo) {
@@ -110,9 +110,9 @@ public class TelaIncluirVeiculo extends JPanel {
                             placa, ano, val);
                 }
                 sistema.atualizarTabela();
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Ano ou valor inválido.");
-            }
+            // } catch (NumberFormatException ex) {
+            //     JOptionPane.showMessageDialog(this, "Ano ou valor inválido.");
+            // }
         });
 
         JPanel form = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 8));

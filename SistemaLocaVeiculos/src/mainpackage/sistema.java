@@ -1,8 +1,5 @@
 package mainpackage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
@@ -14,30 +11,26 @@ import enums.ModeloMotocicleta;
 import enums.ModeloVan;
 
 public class sistema {
-		private static List<Veiculo> veiculos = VeiculoRepo.load();
-	    private static int totalVeiculos = 0;
 
 	    public static void adicionarAutomovel(Estado estado, Marca marca, Categoria categoria, ModeloAutomovel modelo, String placa, int ano, double valorDeCompra) {
 
 	    		Veiculo veiculo = new Automovel( estado,  marca,  categoria,  modelo,  placa,  ano,  valorDeCompra);
-	    		veiculos.add(veiculo);
-	    		totalVeiculos++;
-	    		VeiculoRepo.save(veiculos);
+	    		Main.veiculos.add(veiculo);
+	    		VeiculoRepo.save(Main.veiculos);
 	    }
 	    
 	    public static void adicionarMotocicleta(Estado estado, Marca marca, Categoria categoria, ModeloMotocicleta modelo, String placa, int ano, double valorDeCompra) {
 
     		Veiculo veiculo = new Motocicleta( estado,  marca,  categoria,  modelo,  placa,  ano,  valorDeCompra);
-    		veiculos.add(veiculo);
-    		totalVeiculos++;
-    		VeiculoRepo.save(veiculos);
+    		Main.veiculos.add(veiculo);
+    		VeiculoRepo.save(Main.veiculos);
 	    }
 	    
 	    public static void adicionarVan(Estado estado, Marca marca, Categoria categoria, ModeloVan modelo , String placa, int ano, double valorDeCompra) {
 
     		Veiculo veiculo = new Van( estado,  marca,  categoria,  modelo,  placa,  ano,  valorDeCompra);
-    		veiculos.add(veiculo);
-    		VeiculoRepo.save(veiculos);
+    		Main.veiculos.add(veiculo);
+    		VeiculoRepo.save(Main.veiculos);
 	    }
 
 	    private static AbstractTableModel modeloTabela;
@@ -50,7 +43,7 @@ public class sistema {
 
 	            @Override
 	            public int getRowCount() {
-	                return veiculos.size();
+	                return Main.veiculos.size();
 	            }
 
 	            @Override
@@ -65,7 +58,7 @@ public class sistema {
 
 	            @Override
 	            public Object getValueAt(int rowIndex, int columnIndex) {
-	                Veiculo veiculo = veiculos.get(rowIndex);
+	                Veiculo veiculo = Main.veiculos.get(rowIndex);
 	                switch (columnIndex) {
 	                    case 0: return veiculo.getPlaca();
 	                    case 1: return veiculo.getAno();

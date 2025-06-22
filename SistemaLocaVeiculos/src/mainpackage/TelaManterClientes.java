@@ -7,7 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.ParseException;
-import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,8 +30,6 @@ public class TelaManterClientes extends JPanel {
     private JTextField txtSobrenome;
     private JTextField txtEndereco;
     private JTable table;
-    public static List<Cliente> clientes = ClienteRepo.load();
-    public static List<Veiculo> veiculos = VeiculoRepo.load();
 	
 	private static boolean empty(JTextComponent comp) {
 	    String s = comp.getText().replaceAll("[ _.-]", "").trim();
@@ -237,7 +234,7 @@ public class TelaManterClientes extends JPanel {
         
         topPanel.add(buttonsPanel, BorderLayout.SOUTH);
         
-        ClienteTableModel modelo = new ClienteTableModel(clientes);
+        ClienteTableModel modelo = new ClienteTableModel(Main.clientes);
 	    table = new JTable(modelo);
 	    JScrollPane scroll = new JScrollPane(table);
 	    scroll.setPreferredSize(new Dimension(400, 200));
@@ -270,11 +267,11 @@ public class TelaManterClientes extends JPanel {
 	            clear(txtCpf),
 	            txtEndereco.getText().trim()
 	        );
-	        clientes.add(novo);
+	        Main.clientes.add(novo);
 	        modelo.atualizarTabela();
 	        txtNome.setText(""); txtSobrenome.setText(""); txtRg.setText("");
 	        txtCpf.setText(""); txtEndereco.setText("");
-	        ClienteRepo.save(clientes);
+	        ClienteRepo.save(Main.clientes);
 	    });
 	    
 	    btnCancelar.addActionListener(e -> {
@@ -303,14 +300,14 @@ public class TelaManterClientes extends JPanel {
 	    	            return;
 	    	        }
 	    	        
-	            Cliente c = clientes.get(i);
+	            Cliente c = Main.clientes.get(i);
 	            c.setNome(txtNome.getText().trim());
 	            c.setSobrenome(txtSobrenome.getText().trim());
 	            c.setRG(clear(txtRg));
 	            c.setCPF(clear(txtCpf));
 	            c.setEndereco(txtEndereco.getText().trim());
 	            modelo.atualizarTabela();
-	            ClienteRepo.save(clientes);
+	            ClienteRepo.save(Main.clientes);
 	        } else {
 	            JOptionPane.showMessageDialog(null, "Selecione um cliente na tabela.");
 	        }
@@ -319,11 +316,11 @@ public class TelaManterClientes extends JPanel {
 	    btnExcluir.addActionListener(e -> {
 	        int i = table.getSelectedRow();
 	        if (i >= 0) {
-	            Cliente c = clientes.get(i);
+	            Cliente c = Main.clientes.get(i);
 
 	            // Implementar checagem de carros alugados pelo cliente
 	            boolean possuiLocacao = false;
-	            for (Veiculo v : veiculos) {
+	            for (Veiculo v : Main.veiculos) {
 	                if (v.getLocacao() != null && v.getLocacao().getCliente().equals(c)) {
 	                    possuiLocacao = true;
 	                    break;
@@ -334,9 +331,9 @@ public class TelaManterClientes extends JPanel {
 	                JOptionPane.showMessageDialog(null,
 	                        "Cliente possui veículos locados e não pode ser excluído.");
 	            } else {
-	                clientes.remove(i);
+	                Main.clientes.remove(i);
 	                modelo.atualizarTabela();
-	                ClienteRepo.save(clientes);
+	                ClienteRepo.save(Main.clientes);
 	            }
 	        } else {
 	            JOptionPane.showMessageDialog(null, "Selecione um cliente na tabela.");
@@ -346,7 +343,7 @@ public class TelaManterClientes extends JPanel {
 	    table.getSelectionModel().addListSelectionListener(e -> {
 	        int i = table.getSelectedRow();
 	        if (i >= 0) {
-	            Cliente c = clientes.get(i);
+	            Cliente c = Main.clientes.get(i);
 	            txtNome.setText(c.getNome());
 	            txtSobrenome.setText(c.getSobrenome());
 	            txtRg.setText(c.getRG());
