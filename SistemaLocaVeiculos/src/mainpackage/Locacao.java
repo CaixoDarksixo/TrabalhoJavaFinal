@@ -1,8 +1,10 @@
 package mainpackage;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Locacao {
+public class Locacao implements Serializable {
+    private static final long serialVersionUID = 1L;
 	private int dias;
 	private double valor;
 	private Calendar data;

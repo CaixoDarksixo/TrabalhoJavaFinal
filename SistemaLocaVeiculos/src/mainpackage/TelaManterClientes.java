@@ -309,7 +309,7 @@ public class TelaManterClientes extends JPanel {
 	            modelo.atualizarTabela();
 	            ClienteRepo.save(Main.clientes);
 	        } else {
-	            JOptionPane.showMessageDialog(null, "Selecione um cliente na tabela.");
+	            JOptionPane.showMessageDialog(this, "Selecione um cliente na tabela.");
 	        }
 	    });
 
@@ -328,7 +328,7 @@ public class TelaManterClientes extends JPanel {
 	            }
 
 	            if (possuiLocacao) {
-	                JOptionPane.showMessageDialog(null,
+	                JOptionPane.showMessageDialog(this,
 	                        "Cliente possui veículos locados e não pode ser excluído.");
 	            } else {
 	                Main.clientes.remove(i);
@@ -336,7 +336,7 @@ public class TelaManterClientes extends JPanel {
 	                ClienteRepo.save(Main.clientes);
 	            }
 	        } else {
-	            JOptionPane.showMessageDialog(null, "Selecione um cliente na tabela.");
+	            JOptionPane.showMessageDialog(this, "Selecione um cliente na tabela.");
 	        }
 	    });
 

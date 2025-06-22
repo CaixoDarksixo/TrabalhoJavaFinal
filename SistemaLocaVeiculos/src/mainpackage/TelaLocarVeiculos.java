@@ -168,6 +168,7 @@ public class TelaLocarVeiculos extends JPanel {
                 dataLocacao.setTime(data);
 
                 veiculoSelecionado.locar((Integer) spinnerDias.getValue(), dataLocacao, (Cliente) clientesCombo.getSelectedItem());
+                VeiculoRepo.save(Main.veiculos);
                 JOptionPane.showMessageDialog(this, "Locação realizada com sucesso!");
                 atualizarTabela();
             } catch (ParseException ex) {

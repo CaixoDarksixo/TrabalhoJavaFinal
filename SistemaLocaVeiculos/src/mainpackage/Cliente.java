@@ -1,6 +1,7 @@
 package mainpackage;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -57,4 +58,16 @@ public class Cliente implements Serializable {
 	public void setEndereco(String endereco) {
 		Endereco = endereco;
 	}
+
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cliente outro)) return false;
+        return CPF != null && CPF.equals(outro.CPF);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(CPF);
+    }
 }
