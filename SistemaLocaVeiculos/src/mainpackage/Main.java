@@ -22,24 +22,6 @@ public class Main extends JFrame{
 	public static JButton Voltar = new JButton("Voltar");
 	
 	public static void main(String args[]) {
-	    // // Teste cliente
-		// Cliente clienteTeste = new Cliente();
-		// clienteTeste.setNome("João");
-	    // clienteTeste.setSobrenome("Silva");
-	    // clienteTeste.setCPF("123.456.789-00");
-	    // clientes.add(clienteTeste);
-	    
-	    // Teste carro
-	    // Automovel gol = new Automovel(
-	    //     Estado.DISPONIVEL, 
-	    //     Marca.VW, 
-	    //     Categoria.POPULAR,
-	    //     ModeloAutomovel.Gol,
-	    //     "ABC-1234", 
-	    //     2020, 
-	    //     35000.0
-	    // );
-	    // veiculos.add(gol);
 	    new Main().setVisible(true);
 	}
 	
