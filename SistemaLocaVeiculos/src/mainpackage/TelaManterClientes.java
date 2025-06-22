@@ -7,7 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
@@ -33,7 +32,7 @@ public class TelaManterClientes extends JPanel {
     private JTextField txtEndereco;
     private JTable table;
     public static List<Cliente> clientes = ClienteRepo.load();
-	public static ArrayList<Veiculo> veiculos = new ArrayList<>();
+    public static List<Veiculo> veiculos = VeiculoRepo.load();
 	
 	private static boolean empty(JTextComponent comp) {
 	    String s = comp.getText().replaceAll("[ _.-]", "").trim();

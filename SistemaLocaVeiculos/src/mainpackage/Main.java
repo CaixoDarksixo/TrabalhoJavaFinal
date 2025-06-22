@@ -2,6 +2,7 @@ package mainpackage;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -45,6 +46,8 @@ public class Main extends JFrame{
 		
 		mainlabel = new JLabel("nenhuma tela selecionada");
 		main = new JPanel(new GridLayout(0,1,4,4));
+		
+		
 		main.add(mainlabel);
 		
 		mainc.add("North", telas);
@@ -59,10 +62,18 @@ public class Main extends JFrame{
 				main.repaint();
 			}
 		});
+		
 		IncluirVeiculos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				IncluirVeiculos();
-				setVisible(true);
+				main.removeAll();
+				main.setLayout(new BorderLayout());
+				try {
+					main.add(new TelaIncluirVeiculo(), BorderLayout.CENTER);
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				main.revalidate();
+				main.repaint();
 			}
 		});
 		LocarVeiculos.addActionListener(new ActionListener() {
@@ -85,10 +96,6 @@ public class Main extends JFrame{
 		});
 	}
 	
-	public static void IncluirVeiculos() {
-		main.removeAll();
-		// se cria os componentes como objetos temporários, depois os adiciona no jpanel main, e no fim da função coloca os comportamentos dos botões
-	}
 	public static void LocarVeiculos() {
 		main.removeAll();
 		

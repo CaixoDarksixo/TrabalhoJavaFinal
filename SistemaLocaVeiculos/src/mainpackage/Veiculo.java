@@ -1,5 +1,6 @@
 package mainpackage;
 
+import java.io.Serializable;
 import java.time.Year;
 import java.util.Calendar;
 
@@ -7,7 +8,8 @@ import enums.Categoria;
 import enums.Estado;
 import enums.Marca;
 
-public abstract class Veiculo implements VeiculoI {
+public abstract class Veiculo implements VeiculoI, Serializable {
+    private static final long serialVersionUID = 1L;
 	private Estado estado;
 	private Marca marca;
 	private Categoria categoria;
@@ -16,8 +18,8 @@ public abstract class Veiculo implements VeiculoI {
 	private int ano;
 	private double valorDeCompra;
 	
-	public Veiculo(Estado estado, Marca marca, Categoria categoria, Locacao locacao, String placa, int ano, double valorDeCompra) {
-		this.estado = estado; this.marca = marca; this.categoria = categoria; this.locacao = locacao;
+	public Veiculo(Estado estado, Marca marca, Categoria categoria, String placa, int ano, double valorDeCompra) {
+		this.estado = estado; this.marca = marca; this.categoria = categoria;
 		this.placa = placa; this.ano = ano; this.valorDeCompra = valorDeCompra;
 	}
 	
@@ -50,6 +52,10 @@ public abstract class Veiculo implements VeiculoI {
 	public int getAno() {
 		return this.ano;
 	}
+	public double getValorDeCompra() {
+		return this.valorDeCompra;
+	}
+	
 	public double getValorParaVenda() {
 		double valor = this.valorDeCompra - (Year.now().getValue() - this.ano) * 0.15 * this.valorDeCompra;
 		if(valor < this.valorDeCompra * 0.1) valor = this.valorDeCompra*0.1;
