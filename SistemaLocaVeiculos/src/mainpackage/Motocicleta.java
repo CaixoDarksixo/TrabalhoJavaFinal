@@ -5,6 +5,7 @@ import enums.Estado;
 import enums.Marca;
 import enums.ModeloMotocicleta;
 
+@SuppressWarnings("serial")
 public class Motocicleta extends Veiculo {
 	private ModeloMotocicleta modelo;
 

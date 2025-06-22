@@ -1,5 +1,5 @@
 package enums;
 
 public enum Estado {
-	NOVO, LOCADO, DISPONIVEL, VENDIDO;
+	DISPONIVEL, VENDIDO, LOCADO, NOVO;
 }

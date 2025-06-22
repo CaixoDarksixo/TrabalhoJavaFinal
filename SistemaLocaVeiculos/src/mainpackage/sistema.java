@@ -39,7 +39,7 @@ public class sistema {
 	    	modeloTabela = new AbstractTableModel() {
 	            private static final long serialVersionUID = 1L;
 
-	            private String[] colunas = {"Placa", "Ano", "Marca", "Estado", "Categoria", "Valor"};
+	            private String[] colunas = {"Placa", "Ano", "Marca", "Modelo", "Estado", "Categoria", "Valor"};
 
 	            @Override
 	            public int getRowCount() {
@@ -63,9 +63,16 @@ public class sistema {
 	                    case 0: return veiculo.getPlaca();
 	                    case 1: return veiculo.getAno();
 	                    case 2: return veiculo.getMarca();
-	                    case 3: return veiculo.getEstado();
-	                    case 4: return veiculo.getCategoria();
-	                    case 5: return veiculo.getValorDeCompra();
+	                    case 3:
+	                    	if(veiculo instanceof Automovel)
+	                    		return ((Automovel) veiculo).getModelo();
+	                    	else if(veiculo instanceof Motocicleta)
+		                    	return ((Motocicleta) veiculo).getModelo();
+	                    	else
+		                    	return ((Van) veiculo).getModelo();
+	                    case 4: return veiculo.getEstado();
+	                    case 5: return veiculo.getCategoria();
+	                    case 6: return veiculo.getValorDeCompra();
 	                    default: return null;
 	                }
 	            }

@@ -28,7 +28,7 @@ public class TelaIncluirVeiculo extends JPanel {
     public TelaIncluirVeiculo() throws ParseException {
 
         setBorder(new EmptyBorder(5, 5, 5, 5));
-        setLayout(new GridLayout(0, 1, 4, 4));
+        setLayout(new BorderLayout());
 
         JLabel marcaLbl     = new JLabel("Selecione a marca");
         JLabel estadoLbl    = new JLabel("Selecione o estado");
@@ -115,7 +115,7 @@ public class TelaIncluirVeiculo extends JPanel {
             }
         });
 
-        JPanel form = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 8));
+        JPanel form = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 2));
         form.add(marcaLbl);     form.add(comboMarca);
         form.add(estadoLbl);    form.add(comboEstado);
         form.add(categoriaLbl); form.add(comboCategoria);
@@ -123,11 +123,12 @@ public class TelaIncluirVeiculo extends JPanel {
         form.add(valorLbl);     form.add(TValor);
         form.add(placaLbl);     form.add(tPlaca);
         form.add(anoLbl);       form.add(tAno);
-        add(form);
-        add(addVeic);
-
+        form.add(addVeic);
+        form.setPreferredSize(new Dimension(40,80));
+        add("North",form);
+   
         JTable tabela = sistema.criarTabelaVeiculos();
-        add(new JScrollPane(tabela));
+        add("Center",new JScrollPane(tabela));
     }
 
     public void reset() {

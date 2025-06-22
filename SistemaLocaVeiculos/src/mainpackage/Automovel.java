@@ -5,6 +5,7 @@ import enums.Estado;
 import enums.Marca;
 import enums.ModeloAutomovel;
 
+@SuppressWarnings("serial")
 public class Automovel extends Veiculo{
 	private ModeloAutomovel modelo;
 	public Automovel(Estado estado, Marca marca, Categoria categoria, ModeloAutomovel modelo, String placa, int ano, double valorDeCompra) {

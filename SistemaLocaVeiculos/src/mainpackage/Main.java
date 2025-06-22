@@ -19,7 +19,7 @@ public class Main extends JFrame{
 	
 	//botões para ir para as telas
 	private JButton ManterClientes, IncluirVeiculos, LocarVeiculos, DevolverVeiculos, VenderVeiculos;
-	public static JButton Voltar = new JButton("Voltar");
+	//public static JButton Voltar = new JButton("Voltar");
 	
 	public static void main(String args[]) {
 	    new Main().setVisible(true);
@@ -39,7 +39,7 @@ public class Main extends JFrame{
 		LocarVeiculos = new JButton("Locar Veículos");
 		DevolverVeiculos = new JButton("Devolver Veículos");
 		VenderVeiculos = new JButton("Vender Veículos");
-		Voltar.addActionListener(new ActionListener() {
+		/*Voltar.addActionListener(new ActionListener() {
 		        public void actionPerformed(ActionEvent e) {
 		            main.removeAll();
 		            main.add(mainlabel);
@@ -47,13 +47,14 @@ public class Main extends JFrame{
 		            main.repaint();
 		        }
 	    });
+	    */
 		telas.add(ManterClientes);
 		telas.add(IncluirVeiculos);
 		telas.add(LocarVeiculos);
 		telas.add(DevolverVeiculos);
 		telas.add(VenderVeiculos);
 		
-		mainlabel = new JLabel("nenhuma tela selecionada");
+		mainlabel = new JLabel("");
 		main = new JPanel(new GridLayout(0,1,4,4));
 		
 		
@@ -99,10 +100,16 @@ public class Main extends JFrame{
 		});
 		VenderVeiculos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VenderVeiculos();
-				setVisible(true);
+				main.removeAll();
+				main.setLayout(new BorderLayout());
+				main.add(new TelaVenderVeiculos(), BorderLayout.CENTER);
+				main.revalidate();
+				main.repaint();
 			}
 		});
+		float hsb[] = Color.RGBtoHSB(255, 192, 203, null);
+		telas.setBackground(Color.getHSBColor(hsb[0],hsb[1],hsb[2]));
+		main.setBackground(Color.getHSBColor(hsb[0],hsb[1],hsb[2]));
 	}
 	
 	public static void LocarVeiculos() {

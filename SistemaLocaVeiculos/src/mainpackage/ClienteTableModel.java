@@ -3,6 +3,7 @@ package mainpackage;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class ClienteTableModel extends AbstractTableModel {
 
     private final String[] colunas = {"Nome", "Sobrenome", "RG", "CPF", "Endereço"};
