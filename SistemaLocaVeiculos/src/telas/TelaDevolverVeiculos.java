@@ -1,4 +1,4 @@
-package mainpackage;
+package telas;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -6,6 +6,12 @@ import java.awt.*;
 import java.text.SimpleDateFormat;
 
 import enums.Estado;
+import mainpackage.Automovel;
+import mainpackage.Main;
+import mainpackage.Motocicleta;
+import mainpackage.Van;
+import mainpackage.Veiculo;
+import mainpackage.VeiculoRepo;
 
 @SuppressWarnings("serial")
 public class TelaDevolverVeiculos extends JPanel {

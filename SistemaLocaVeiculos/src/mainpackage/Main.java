@@ -7,6 +7,12 @@ import java.util.List;
 
 import javax.swing.*;
 
+import telas.TelaDevolverVeiculos;
+import telas.TelaIncluirVeiculo;
+import telas.TelaLocarVeiculos;
+import telas.TelaManterClientes;
+import telas.TelaVenderVeiculos;
+
 public class Main extends JFrame{
 	private static final long serialVersionUID = -9151783484566916823L;
 	public static int fh = (int)(Toolkit.getDefaultToolkit().getScreenSize().height * 0.56), fw = (int)( Toolkit.getDefaultToolkit().getScreenSize().height * 1.08);

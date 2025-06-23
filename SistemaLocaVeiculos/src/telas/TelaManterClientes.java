@@ -1,5 +1,5 @@
 
-package mainpackage;
+package telas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -22,6 +22,12 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 import javax.swing.JTable;
+
+import mainpackage.Cliente;
+import mainpackage.ClienteTableModel;
+import mainpackage.ClienteRepo;
+import mainpackage.Main;
+import mainpackage.Veiculo;
 
 public class TelaManterClientes extends JPanel {
 

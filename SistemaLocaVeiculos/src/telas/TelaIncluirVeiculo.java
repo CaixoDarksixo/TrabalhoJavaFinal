@@ -1,7 +1,8 @@
-package mainpackage;
+package telas;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
@@ -20,13 +21,21 @@ import enums.Marca;
 import enums.ModeloAutomovel;
 import enums.ModeloMotocicleta;
 import enums.ModeloVan;
+import mainpackage.Automovel;
+import mainpackage.Main;
+import mainpackage.Motocicleta;
+import mainpackage.Van;
+import mainpackage.Veiculo;
+import mainpackage.VeiculoRepo;
 
 public class TelaIncluirVeiculo extends JPanel {
 
     private static final long serialVersionUID = 1L;
+    
+    private static AbstractTableModel modeloTabela;
 
     public TelaIncluirVeiculo() throws ParseException {
-
+    	
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(new BorderLayout());
 
@@ -89,27 +98,27 @@ public class TelaIncluirVeiculo extends JPanel {
                 String placa = tPlaca.getText().replaceAll("[ _]", "");
 
                 switch (tipo) {
-                    case "AUTOMÓVEL" -> sistema.adicionarAutomovel(
+                    case "AUTOMÓVEL" -> adicionarAutomovel(
                             comboEstado.getItemAt(comboEstado.getSelectedIndex()),
                             comboMarca.getItemAt(comboMarca.getSelectedIndex()),
                             comboCategoria.getItemAt(comboCategoria.getSelectedIndex()),
                             (ModeloAutomovel) comboModelo.getSelectedItem(),
                             placa, ano, val);
 
-                    case "MOTOCICLETA" -> sistema.adicionarMotocicleta(
+                    case "MOTOCICLETA" -> adicionarMotocicleta(
                             comboEstado.getItemAt(comboEstado.getSelectedIndex()),
                             comboMarca.getItemAt(comboMarca.getSelectedIndex()),
                             comboCategoria.getItemAt(comboCategoria.getSelectedIndex()),
                             (ModeloMotocicleta) comboModelo.getSelectedItem(),
                             placa, ano, val);
-                    case "VAN" -> sistema.adicionarVan(
+                    case "VAN" -> adicionarVan(
                             comboEstado.getItemAt(comboEstado.getSelectedIndex()),
                             comboMarca.getItemAt(comboMarca.getSelectedIndex()),
                             comboCategoria.getItemAt(comboCategoria.getSelectedIndex()),
                             (ModeloVan) comboModelo.getSelectedItem(),
                             placa, ano, val);
                 }
-                sistema.atualizarTabela();
+                atualizarTabela();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Ano ou valor inválido.");
             }
@@ -127,10 +136,81 @@ public class TelaIncluirVeiculo extends JPanel {
         form.setPreferredSize(new Dimension(40,80));
         add("North",form);
    
-        JTable tabela = sistema.criarTabelaVeiculos();
+        JTable tabela = criarTabelaVeiculos();
         add("Center",new JScrollPane(tabela));
     }
+    
+    public static JTable criarTabelaVeiculos() {
+    	modeloTabela = new AbstractTableModel() {
+            private static final long serialVersionUID = 1L;
 
+            private String[] colunas = {"Placa", "Ano", "Marca", "Modelo", "Estado", "Categoria", "Valor"};
+
+            @Override
+            public int getRowCount() {
+                return Main.veiculos.size();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return colunas.length;
+            }
+
+            @Override
+            public String getColumnName(int column) {
+                return colunas[column];
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                Veiculo veiculo = Main.veiculos.get(rowIndex);
+                switch (columnIndex) {
+                    case 0: return veiculo.getPlaca();
+                    case 1: return veiculo.getAno();
+                    case 2: return veiculo.getMarca();
+                    case 3:
+                    	if(veiculo instanceof Automovel)
+                    		return ((Automovel) veiculo).getModelo();
+                    	else if(veiculo instanceof Motocicleta)
+	                    	return ((Motocicleta) veiculo).getModelo();
+                    	else
+	                    	return ((Van) veiculo).getModelo();
+                    case 4: return veiculo.getEstado();
+                    case 5: return veiculo.getCategoria();
+                    case 6: return veiculo.getValorDeCompra();
+                    default: return null;
+                }
+            }
+        };
+
+        return new JTable(modeloTabela);
+
+    }
+    
+    public static void atualizarTabela() {
+        modeloTabela.fireTableDataChanged();
+    }
+    
+    public static void adicionarAutomovel(Estado estado, Marca marca, Categoria categoria, ModeloAutomovel modelo, String placa, int ano, double valorDeCompra) {
+		Veiculo veiculo = new Automovel( estado,  marca,  categoria,  modelo,  placa,  ano,  valorDeCompra);
+		Main.veiculos.add(veiculo);
+		VeiculoRepo.save(Main.veiculos);
+    }
+
+    public static void adicionarMotocicleta(Estado estado, Marca marca, Categoria categoria, ModeloMotocicleta modelo, String placa, int ano, double valorDeCompra) {
+    	Veiculo veiculo = new Motocicleta( estado,  marca,  categoria,  modelo,  placa,  ano,  valorDeCompra);
+    	Main.veiculos.add(veiculo);
+    	VeiculoRepo.save(Main.veiculos);
+    }
+
+    public static void adicionarVan(Estado estado, Marca marca, Categoria categoria, ModeloVan modelo , String placa, int ano, double valorDeCompra) {
+    	Veiculo veiculo = new Van( estado,  marca,  categoria,  modelo,  placa,  ano,  valorDeCompra);
+    	Main.veiculos.add(veiculo);
+		VeiculoRepo.save(Main.veiculos);
+	}
+
+
+    
     public void reset() {
         revalidate();
         repaint();
