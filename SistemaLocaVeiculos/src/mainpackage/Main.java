@@ -40,13 +40,13 @@ public class Main extends JFrame{
 		this.setSize(fw, fh);
 		BufferedImage logo;
 		try {
-			logo = ImageIO.read(Main.class.getResource("/logo.jpeg"));
+			logo = ImageIO.read(Main.class.getResource("/logo.png"));
 			this.setIconImage(logo);
 			mainlabel = new JLabel("") {
 	            @Override
 	            protected void paintComponent(Graphics g) {
 	                super.paintComponent(g);
-	                g.drawImage(logo, 0, 0, null);
+	                g.drawImage(logo, (this.getWidth()-this.getHeight())/2, 0, this.getHeight(), this.getHeight(), null);
 	            }
 	        };
 		} catch (IOException e) {
