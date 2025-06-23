@@ -78,6 +78,15 @@ public class TelaManterClientes extends JPanel {
 	        return false;
 	    }
 	}
+	
+	public static boolean cpfExiste(String CPF) {
+        for (Cliente c : Main.clientes) {
+            if (c.getCPF().equalsIgnoreCase(CPF)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public TelaManterClientes() {
         setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -85,6 +94,10 @@ public class TelaManterClientes extends JPanel {
         
         JPanel topPanel = new JPanel(new BorderLayout());
         add(topPanel, BorderLayout.NORTH);
+
+        JLabel titulo = new JLabel("CADASTRO DE CLIENTES", SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 18));
+        topPanel.add(titulo, BorderLayout.NORTH);
         
         JPanel formPanel = new JPanel();
         GridBagLayout gbl_formPanel = new GridBagLayout();
@@ -258,12 +271,16 @@ public class TelaManterClientes extends JPanel {
 	                    "Campos obrigatórios", JOptionPane.WARNING_MESSAGE);
 	                return;
 	            }
-	        
-	        if (!validarCPF(clear(txtCpf))) {
+	        String cpfcheck = clear(txtCpf);
+	        if (!validarCPF(cpfcheck)) {
 	            JOptionPane.showMessageDialog(this,
 	                "CPF inválido. Por favor, digite um CPF válido.",
 	                "Erro de validação", JOptionPane.ERROR_MESSAGE);
 	            return;
+	        }
+	        if (cpfExiste(cpfcheck)) {
+	        	JOptionPane.showMessageDialog(this, "CPF já cadastrado.");
+            	return;
 	        }
 	        
 	        Cliente novo = new Cliente(

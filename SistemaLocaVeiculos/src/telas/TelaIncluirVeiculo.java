@@ -96,6 +96,11 @@ public class TelaIncluirVeiculo extends JPanel {
                 int ano = Integer.parseInt(tAno.getText().replaceAll("[^\\d]", ""));
                 double val = Double.parseDouble(TValor.getText().replace(".","").replace(",", "."));
                 String placa = tPlaca.getText().replaceAll("[ _]", "");
+                
+                if(placaExiste(placa)) {
+                	JOptionPane.showMessageDialog(this, "Placa já existe.");
+                	return;
+                }
 
                 switch (tipo) {
                     case "AUTOMÓVEL" -> adicionarAutomovel(
@@ -123,6 +128,11 @@ public class TelaIncluirVeiculo extends JPanel {
                 JOptionPane.showMessageDialog(this, "Ano ou valor inválido.");
             }
         });
+        JPanel titleform = new JPanel(new BorderLayout());
+        
+        JLabel titulo = new JLabel("CADASTRO DE VEÍCULOS", SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 18));
+        titleform.add(titulo, BorderLayout.NORTH);
 
         JPanel form = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 2));
         form.add(marcaLbl);     form.add(comboMarca);
@@ -133,9 +143,10 @@ public class TelaIncluirVeiculo extends JPanel {
         form.add(placaLbl);     form.add(tPlaca);
         form.add(anoLbl);       form.add(tAno);
         form.add(addVeic);
-        form.setPreferredSize(new Dimension(40,80));
-        add("North",form);
-   
+        form.setPreferredSize(new Dimension(40,100));
+        
+        titleform.add("Center",form);
+        add("North",titleform);
         JTable tabela = criarTabelaVeiculos();
         add("Center",new JScrollPane(tabela));
     }
@@ -209,7 +220,14 @@ public class TelaIncluirVeiculo extends JPanel {
 		VeiculoRepo.save(Main.veiculos);
 	}
 
-
+    public static boolean placaExiste(String placa) {
+    	for (Veiculo v : Main.veiculos) {
+    		if (v.getPlaca().equalsIgnoreCase(placa)) {
+    			return true;
+    		}
+    	}
+    	return false;
+	}
     
     public void reset() {
         revalidate();
