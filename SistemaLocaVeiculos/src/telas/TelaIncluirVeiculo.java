@@ -189,7 +189,7 @@ public class TelaIncluirVeiculo extends JPanel {
 	                    	return ((Van) veiculo).getModelo();
                     case 4: return veiculo.getEstado();
                     case 5: return veiculo.getCategoria();
-                    case 6: return veiculo.getValorDeCompra();
+                    case 6: return String.format("R$ %.2f",veiculo.getValorDeCompra());
                     default: return null;
                 }
             }

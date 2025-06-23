@@ -2,9 +2,12 @@ package mainpackage;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import telas.TelaDevolverVeiculos;
@@ -30,10 +33,25 @@ public class Main extends JFrame{
 	    new Main().setVisible(true);
 	}
 	
+	@SuppressWarnings("serial")
 	public Main() {
 		super("Sistema Empresarial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(fw, fh);
+		BufferedImage logo;
+		try {
+			logo = ImageIO.read(Main.class.getResource("/logo.jpeg"));
+			this.setIconImage(logo);
+			mainlabel = new JLabel("") {
+	            @Override
+	            protected void paintComponent(Graphics g) {
+	                super.paintComponent(g);
+	                g.drawImage(logo, 0, 0, null);
+	            }
+	        };
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		mainc = getContentPane();
 		mainc.setLayout(new BorderLayout());
@@ -51,9 +69,7 @@ public class Main extends JFrame{
 		telas.add(DevolverVeiculos);
 		telas.add(VenderVeiculos);
 		
-		mainlabel = new JLabel("");
 		main = new JPanel(new GridLayout(0,1,4,4));
-		
 		
 		main.add(mainlabel);
 		
