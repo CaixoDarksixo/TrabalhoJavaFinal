@@ -103,7 +103,7 @@ public class TelaDevolverVeiculos extends JPanel {
 
             tabelaModel.addRow(new Object[]{
                 v.getLocacao().getCliente().getNome() + " " + v.getLocacao().getCliente().getSobrenome(), v.getPlaca(), v.getMarca(), modelo, v.getAno(), 
-                dateString, v.getValorDiariaLocacao(), v.getLocacao().getDias(), v.getLocacao().getValor()
+                dateString,  String.format("R$ %.2f", v.getValorDiariaLocacao()), v.getLocacao().getDias(),  String.format("R$ %.2f", v.getLocacao().getValor())
             });
         }
     }
