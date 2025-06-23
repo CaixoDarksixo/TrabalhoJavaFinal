@@ -94,8 +94,11 @@ public class Main extends JFrame{
 		});
 		DevolverVeiculos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DevolverVeiculos();
-				setVisible(true);
+				main.removeAll();
+				main.setLayout(new BorderLayout());
+				main.add(new TelaDevolverVeiculos(), BorderLayout.CENTER);
+				main.revalidate();
+				main.repaint();
 			}
 		});
 		VenderVeiculos.addActionListener(new ActionListener() {

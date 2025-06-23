@@ -25,7 +25,7 @@ public abstract class Veiculo implements VeiculoI, Serializable {
 	
 	public void locar(int dias, Calendar data, Cliente cliente) {
 		this.estado = Estado.LOCADO;
-		this.locacao = new Locacao(dias, this.getValorDiariaLocacao(),data,cliente);
+		this.locacao = new Locacao(dias, this.getValorDiariaLocacao() * dias,data,cliente);
 	}
 	public void vender() {
 		this.estado = Estado.VENDIDO;
