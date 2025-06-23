@@ -89,7 +89,29 @@ public class TelaIncluirVeiculo extends JPanel {
         });
 
         JButton addVeic = new JButton("Adicionar Veículo");
+      
+        JPanel titleform = new JPanel(new BorderLayout());
+        
+        JLabel titulo = new JLabel("CADASTRO DE VEÍCULOS", SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 18));
+        titleform.add(titulo, BorderLayout.NORTH);
 
+        JPanel form = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 2));
+        form.add(marcaLbl);     form.add(comboMarca);
+        form.add(estadoLbl);    form.add(comboEstado);
+        form.add(categoriaLbl); form.add(comboCategoria);
+        form.add(modeloLbl);    form.add(comboTipo); form.add(comboModelo);
+        form.add(valorLbl);     form.add(TValor);
+        form.add(placaLbl);     form.add(tPlaca);
+        form.add(anoLbl);       form.add(tAno);
+        form.add(addVeic);    	
+        form.setPreferredSize(new Dimension(40,100));
+        
+        titleform.add("Center",form);
+        add("North",titleform);
+        JTable tabela = criarTabelaVeiculos();
+        add("Center",new JScrollPane(tabela));
+        
         addVeic.addActionListener((ActionEvent e) -> {
             String tipo = (String) comboTipo.getSelectedItem();
             try {
@@ -128,27 +150,6 @@ public class TelaIncluirVeiculo extends JPanel {
                 JOptionPane.showMessageDialog(this, "Ano ou valor inválido.");
             }
         });
-        JPanel titleform = new JPanel(new BorderLayout());
-        
-        JLabel titulo = new JLabel("CADASTRO DE VEÍCULOS", SwingConstants.CENTER);
-        titulo.setFont(new Font("Arial", Font.BOLD, 18));
-        titleform.add(titulo, BorderLayout.NORTH);
-
-        JPanel form = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 2));
-        form.add(marcaLbl);     form.add(comboMarca);
-        form.add(estadoLbl);    form.add(comboEstado);
-        form.add(categoriaLbl); form.add(comboCategoria);
-        form.add(modeloLbl);    form.add(comboTipo); form.add(comboModelo);
-        form.add(valorLbl);     form.add(TValor);
-        form.add(placaLbl);     form.add(tPlaca);
-        form.add(anoLbl);       form.add(tAno);
-        form.add(addVeic);
-        form.setPreferredSize(new Dimension(40,100));
-        
-        titleform.add("Center",form);
-        add("North",titleform);
-        JTable tabela = criarTabelaVeiculos();
-        add("Center",new JScrollPane(tabela));
     }
     
     public static JTable criarTabelaVeiculos() {

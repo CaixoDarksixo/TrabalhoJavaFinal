@@ -25,7 +25,6 @@ public class Main extends JFrame{
 	
 	//botões para ir para as telas
 	private JButton ManterClientes, IncluirVeiculos, LocarVeiculos, DevolverVeiculos, VenderVeiculos;
-	//public static JButton Voltar = new JButton("Voltar");
 	
 	public static void main(String args[]) {
 	    new Main().setVisible(true);
@@ -45,15 +44,7 @@ public class Main extends JFrame{
 		LocarVeiculos = new JButton("Locar Veículos");
 		DevolverVeiculos = new JButton("Devolver Veículos");
 		VenderVeiculos = new JButton("Vender Veículos");
-		/*Voltar.addActionListener(new ActionListener() {
-		        public void actionPerformed(ActionEvent e) {
-		            main.removeAll();
-		            main.add(mainlabel);
-		            main.revalidate();
-		            main.repaint();
-		        }
-	    });
-	    */
+
 		telas.add(ManterClientes);
 		telas.add(IncluirVeiculos);
 		telas.add(LocarVeiculos);
